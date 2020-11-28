@@ -120,5 +120,6 @@ public class MyTest {
 		Person bean = (Person) applicationContext.getBean("getPerson");
 		System.out.println(bean);
 	}
+	
 
 }

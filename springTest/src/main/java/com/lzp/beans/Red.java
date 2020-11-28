@@ -1,5 +1,7 @@
 package com.lzp.beans;
 
+import javax.inject.Inject;
+
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.context.ApplicationContext;
@@ -15,6 +17,7 @@ public class Red implements ApplicationContextAware,BeanNameAware{
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 		// TODO Auto-generated method stub
 		System.out.println("red类注入ioc容器"+applicationContext);
+		this.applicationContext=applicationContext;
 	}
 
 	@Override
