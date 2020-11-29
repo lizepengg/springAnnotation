@@ -1,5 +1,7 @@
 package com.lzp.configs;
 
+import org.springframework.aop.aspectj.autoproxy.AspectJAwareAdvisorAutoProxyCreator;
+import org.springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
@@ -25,6 +27,22 @@ import com.lzp.aop.MyAspects;
  * 2.在切面类上的每一个通知方法上标注通知注解，告诉spring何时何地运行（切入点表达式）
  * 3.开启基于注解的aop模式：@EnableAspectJAutoProxy
  *  * 
+ *  
+ *  Aop原理:@EnableAspectJAutoProxy
+ *  1.这个注解是什莫？通过@import(AspectJautoProxyRegistrar.class):给容器中添加AspectJAutoProxyCreator
+ *  利用AspectJAutoProxyRegistrar自定义给容器中注册bean：
+ *  internalAutoProxyCreator=AnnotationAwareAspectJAutoProxy
+ *  	给容器中注册一个AnnotationAwareAspectJAutoProxyCreator;
+ *  2.AnnotationAwareAspectJAutoProxyCreator父类：
+ *  	->AspectJAwareAdvisorAutoProxyCreator
+ *  		->AbstractAdvisorAutoProxyCreator
+ *  			->AbstractAutoProxyCreator 实现了SmartInstantiationAwareBeanPostProcessor和BeanFactoryAware接口
+ *  			关注后置处理器（在bean初始化完成前后做事情）、自动装配beanFactory
+ *  
+ *  
+ *  
+ *  
+ *  
  */
 
 @EnableAspectJAutoProxy   
